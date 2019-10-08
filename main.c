@@ -3,7 +3,7 @@
  * Text mode Ray-marcher thrown together in a few hours, after getting bored in
  * an introductory C programming class.
  *
- * Copyright (C) 201]9 Neal Nicdao
+ * Copyright (C) 2019 Neal Nicdao
  * 
  * Licensed under the Holy Open Software License of the Computer Gods V1
  * 
@@ -194,6 +194,8 @@ float draw_newton_cradle(const vec3 from, const vec3 pos,
           0, nukPosB);
     vadd(pos, nukPosB, nukPosB);
     dist = fmin(dist, distance_sphere(from, nukPosB, 1));
+    
+    return dist;
 }
 
 
@@ -250,10 +252,10 @@ int main()
 
     // Allocate screen buffer
     g_screenBuffer = malloc(sizeof(char) * (g_resolution[0] + 1)
-             * g_resolution[1] + 1);
+                             * g_resolution[1] + 1);
 
     memset(g_screenBuffer, '-', sizeof(char) * (g_resolution[0] + 1)
-                 * g_resolution[1] + 1);
+                                 * g_resolution[1] + 1);
 
     // Put a null terminator at the end
     g_screenBuffer[(g_resolution[0] + 1) * g_resolution[1]] = 0;
@@ -365,8 +367,8 @@ int main()
         // Calculate Elasped Time.
 
         gettimeofday(&timeNow, 0);
-        g_time = (timeNow.tv_sec - timeStart.tv_sec) * 1000.0f
-        + (timeNow.tv_usec - timeStart.tv_usec) / 1000.0f;
+        g_time = ((timeNow.tv_sec - timeStart.tv_sec) * 1000.0f
+        + (timeNow.tv_usec - timeStart.tv_usec) / 1000.0f);
 
         // Clear screen and draw buffer
 
